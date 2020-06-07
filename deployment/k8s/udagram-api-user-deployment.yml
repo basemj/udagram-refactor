@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: udagram-api-user
   labels:
     service: udagram-api-user
-  name: udagram-api-user
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       service: udagram-api-user
@@ -15,9 +15,8 @@ spec:
         service: udagram-api-user
     spec:
       containers:
-        - image: edgesentry/udagram-api-user
-          name: udagram-api-user
-          imagePullPolicy: Always
+        - name: udagram-api-user
+          image: edgesentry/udagram-api-user
           resources:
             requests:
               memory: "64Mi"
@@ -51,26 +50,26 @@ spec:
                 configMapKeyRef:
                   name: env-config
                   key: JWT_SECRET
-            - name: POSTGRESS_DB
+            - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: env-config
-                  key: POSTGRESS_DB
-            - name: POSTGRESS_HOST
+                  key: POSTGRES_DB
+            - name: POSTGRES_HOST
               valueFrom:
                 configMapKeyRef:
                   name: env-config
-                  key: POSTGRESS_HOST
-            - name: POSTGRESS_PASSWORD
+                  key: POSTGRES_HOST
+            - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: env-secret
-                  key: POSTGRESS_PASSWORD
-            - name: POSTGRESS_USERNAME
+                  key: POSTGRES_PASSWORD
+            - name: POSTGRES_USERNAME
               valueFrom:
-                secretKeyRef:
-                  name: env-secret
-                  key: POSTGRESS_USERNAME
+                configMapKeyRef:
+                  name: env-config
+                  key: POSTGRES_USERNAME
           volumeMounts:
             - name: aws-secret
               mountPath: "/root/.aws/"
