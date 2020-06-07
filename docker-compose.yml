@@ -1,6 +1,6 @@
 version: "3"
 services:
-  udagram_api_user:
+  udagram-api-user:
     image: edgesentry/udagram-api-user
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
@@ -12,7 +12,7 @@ services:
       AWS_MEDIA_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: $URL
-  udagram_api_feed:
+  udagram-api-feed:
     image: edgesentry/udagram-api-feed
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
@@ -24,7 +24,7 @@ services:
       AWS_MEDIA_BUCKET: $AWS_BUCKET
       JWT_SECRET: $JWT_SECRET
       URL: $URL
-  udagram_frontend:
+  udagram-frontend:
     image: edgesentry/udagram-frontend
     ports:
       - "8100:80"

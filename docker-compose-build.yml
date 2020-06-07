@@ -1,17 +1,17 @@
 version: "3"
 services:
-  udagram_api_user:
+  udagram-api-user:
     image: edgesentry/udagram-api-user
     build:
       context: ./udagram-api-user
       dockerfile: Dockerfile
-  udagram_api_feed:
+  udagram-api-feed:
     image: edgesentry/udagram-api-feed
     build:
       context: ./udagram-api-feed
       dockerfile: Dockerfile
-  udagram_frontend:
+  udagram-frontend:
     image: edgesentry/udagram-frontend
     build:
-      context: ./udagram-api-user
+      context: ./udagram-frontend
       dockerfile: Dockerfile
