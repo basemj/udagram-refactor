@@ -1,0 +1,39 @@
+version: "3"
+services:
+  udagram_api_user:
+    image: edgesentry/udagram-api-user
+    build:
+      context: ./udagram-api-user
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DATABASE
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_MEDIA_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: $URL
+  udagram_api_feed:
+    image: edgesentry/udagram-api-feed
+    build:
+      context: ./udagram-api-feed
+      dockerfile: Dockerfile
+    environment:
+      POSTGRES_USERNAME: $POSTGRES_USERNAME
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: $POSTGRES_DATABASE
+      POSTGRES_HOST: $POSTGRES_HOST
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      AWS_MEDIA_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: $URL
+  udagram_frontend:
+    image: edgesentry/udagram-frontend
+    build:
+      context: ./udagram-api-user
+      dockerfile: Dockerfile
+    ports:
+      - "8100:80"
