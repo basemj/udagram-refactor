@@ -3,15 +3,20 @@ services:
   udagram-api-user:
     image: edgesentry/udagram-api-user
     build:
-      context: ./udagram-api-user
+      context: ../../udagram-api-user
       dockerfile: Dockerfile
   udagram-api-feed:
     image: edgesentry/udagram-api-feed
     build:
-      context: ./udagram-api-feed
+      context: ../../udagram-api-feed
       dockerfile: Dockerfile
   udagram-frontend:
     image: edgesentry/udagram-frontend
     build:
-      context: ./udagram-frontend
+      context: ../../udagram-frontend
+      dockerfile: Dockerfile
+  udagram-reverse-proxy:
+    image: edgesentry/udagram-reverse-proxy
+    build:
+      context: .
       dockerfile: Dockerfile
